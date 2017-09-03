@@ -40,8 +40,7 @@ func TestInvalidString(t *testing.T) {
 }
 
 func TestBadAlphabet(t *testing.T) {
-	a := luhn.Alphabet("01234566789")
-	_, err := a.Generate("7992739871")
+	_, err := luhn.NewAlphabet("01234566789")
 	t.Log(err)
 	if err == nil {
 		t.Error("Unexpected nil error")
