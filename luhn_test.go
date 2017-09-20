@@ -56,3 +56,22 @@ func TestValidate(t *testing.T) {
 		t.Errorf("Incorrect validation response for abcdefd")
 	}
 }
+
+func TestValidateRosetta(t *testing.T) {
+	// http://rosettacode.org/wiki/Luhn_test_of_credit_card_numbers
+	a := luhn.Alphabet("0123456789")
+	cases := []struct {
+		v  string
+		ok bool
+	}{
+		{"49927398716", true},
+		{"49927398717", false},
+		{"1234567812345678", false},
+		{"1234567812345670", true},
+	}
+	for _, tc := range cases {
+		if res := a.Validate(tc.v); res != tc.ok {
+			t.Errorf("Validate(%q) => %v, expected %v", tc.v, res, tc.ok)
+		}
+	}
+}

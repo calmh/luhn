@@ -20,6 +20,9 @@ var (
 // of characters from the Alphabet a.
 func (a Alphabet) Generate(s string) (rune, error) {
 	factor := 1
+	if len(s)%2 == 1 {
+		factor = 2
+	}
 	sum := 0
 	n := len(a)
 
